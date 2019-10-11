@@ -1,5 +1,5 @@
 
-A simple example of how to deploy a D aapplication (using vibe-d) to Heroku.
+A simple example of how to deploy a D application (using vibe-d) to Heroku.
 
 Instructions:
 
