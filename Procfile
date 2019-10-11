@@ -1,1 +1,1 @@
-web: ./prueba-d
+web: ./test-heroku
