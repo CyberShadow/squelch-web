@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/prueba-d
+prueba-d.so
+prueba-d.dylib
+prueba-d.dll
+prueba-d.a
+prueba-d.lib
+prueba-d-test-*
+*.exe
+*.o
+*.obj
+*.lst
