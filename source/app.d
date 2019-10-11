@@ -9,7 +9,6 @@ void main()
 	settings = new HTTPServerSettings ;
 	 // Provide a default port in case of the $PORT variable isn't set.
         settings.port = environment.get("PORT", "8080").to!ushort;
-	//settings.bindAddresses = [ "127.0.0.1","0.0.0.0"];
 	listenHTTP(settings, &hello);
 
 	logInfo("Heroku test application started! Listening to port " ~ to!string(settings.port));

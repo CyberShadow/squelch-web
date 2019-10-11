@@ -7,6 +7,6 @@
 		"vibe-d": "~>0.8.2"
 	},
 	"description": "A simple vibe.d server application.",
-	"license": "proprietary",
-	"name": "prueba-d"
+	"license": "MIT",
+	"name": "test-heroku"
 }
