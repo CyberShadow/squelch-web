@@ -1,0 +1,6 @@
+{
+  "name": "Vibe-d Sample",
+  "description": "A barebones D app using Vibe-d",
+  "repository": "https://github.com/heroku/node-js-getting-started",
+  "keywords": ["dlang", "vibe-d"]
+}
