@@ -2,5 +2,9 @@
   "name": "Vibe-d Sample",
   "description": "A barebones D app using Vibe-d",
   "repository": "https://github.com/heroku/node-js-getting-started",
+  "buildpacks": [
+    {
+     "url":"https://github.com/MartinNowak/heroku-buildpack-d"
+  }],
   "keywords": ["dlang", "vibe-d"]
 }
