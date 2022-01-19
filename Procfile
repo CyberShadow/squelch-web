@@ -1,1 +1,1 @@
-web: ./test-heroku
+web: ./squelch-web

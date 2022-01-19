@@ -1,0 +1,9 @@
+name "squelch-web"
+description "Squelch web UI"
+license "MIT"
+targetType "executable"
+copyright "Copyright © 2019, Pablo De Napoli"
+copyright "Copyright © 2022, Vladimir Panteleev"
+
+dependency "squelch:lib" version="==0.2.1"
+dependency "vibe-d" version="~>0.9.4"

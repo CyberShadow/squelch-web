@@ -1,21 +1,37 @@
-import vibe.vibe;
-import std.process;
-import std.conv;
+import std.process : environment;
+import std.stdio : File;
 
-HTTPServerSettings settings;
+import vibe.vibe;
+
+import ae.sys.file : readFile;
+
+import squelch.lex;
+import squelch.format;
+import squelch.write;
+
+void formatSQL(HTTPServerRequest req, HTTPServerResponse res)
+{
+	auto src = req.form["sql"];
+	auto tokens = lex(src);
+	tokens = format(tokens);
+	auto o = File.tmpfile();
+	save(tokens, o);
+	o.seek(0);
+	src = cast(string)readFile(o);
+	res.writeBody(src, "text/plain");
+}
 
 void main()
 {
-	settings = new HTTPServerSettings ;
+	auto settings = new HTTPServerSettings ;
 	 // Provide a default port in case of the $PORT variable isn't set.
-        settings.port = environment.get("PORT", "8080").to!ushort;
-	listenHTTP(settings, &hello);
+	settings.port = environment.get("PORT", "8080").to!ushort;
 
-	logInfo("Heroku test application started! Listening to port " ~ to!string(settings.port));
+	auto router = new URLRouter;
+	router.post("/format", &formatSQL);
+	router.get("*", serveStaticFiles("./public/"));
+
+	listenHTTP(settings, router);
+
 	runApplication();
-}
-
-void hello(HTTPServerRequest req, HTTPServerResponse res)
-{
-	res.writeBody("Heroku test application listening to port "~ to!string(settings.port));
 }
