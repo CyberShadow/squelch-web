@@ -12,13 +12,21 @@ import squelch.write;
 void formatSQL(HTTPServerRequest req, HTTPServerResponse res)
 {
 	auto src = req.form["sql"];
-	auto tokens = lex(src);
-	tokens = format(tokens);
-	auto o = File.tmpfile();
-	save(tokens, o);
-	o.seek(0);
-	src = cast(string)readFile(o);
-	res.writeBody(src, "text/plain");
+	try
+	{
+		auto tokens = lex(src);
+		tokens = format(tokens);
+		auto o = File.tmpfile();
+		save(tokens, o);
+		o.seek(0);
+		src = cast(string)readFile(o);
+		res.writeBody(src, "text/plain");
+	}
+	catch (Exception e)
+	{
+		res.statusCode = HTTPStatus.unprocessableEntity;
+		res.writeBody(e.msg, "text/plain");
+	}
 }
 
 void main()

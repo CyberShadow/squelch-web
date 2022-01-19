@@ -56,7 +56,10 @@ WINDOW item_window AS (PARTITION BY category ORDER BY purchases ROWS BETWEEN 2 P
 		 method: 'POST',
 		 body: formData,
 	 });
-	 sql.value = await res.text();
+	 if (res.status == 200)
+		 sql.value = await res.text();
+	 else
+		 alert(await res.text());
  });
  document.getElementById('copy').addEventListener('click', async function() {
 	 if (!navigator.clipboard || !navigator.clipboard.writeText)
